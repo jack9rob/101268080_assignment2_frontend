@@ -1,3 +1,4 @@
+import '../App.css';
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
@@ -21,7 +22,7 @@ export default class EmployeesList extends Component {
         axios.get("http://localhost:9090/api/v1/employees")
         .then(response => {
             this.setState({employees: response.data.employees})
-            console.log(this.state.employees)
+            console.log(response)
         })
         .catch(error => console.log(error))
     }
@@ -34,20 +35,40 @@ export default class EmployeesList extends Component {
 
     render() {
         return (
-            <div>
-                {
-                    this.state.employees.map(e => (
-                        <div key={e._id}>
-                            {e.firstName}
-                            <Link to={`/api/v1/employees/${e._id}`}>Details</Link>
+            <div class="mt-5">
+                <div>
+                <Link to="/employees/add"><button class="btn btn-primary">Add Employee</button></Link>
+                </div>
+                <br/>
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Employee First Name</th>
+                            <th scope="col">Employee Last Name</th>
+                            <th scope="col">Employee Email</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                    {
+                        this.state.employees.map(e => (
+                            <tr key={e._id}>
+                                <td>{e.firstName}</td>
+                                <td>{e.lastName}</td>
+                                <td>{e.emailId}</td>
+                                <td>
+                                    <a class="btn btn-primary mr-2" href={`/employees/${e._id}`}>Details</a>
+                                    <a class="btn btn-danger mr-2" href={`/employees/delete/${e._id}`}> Delete </a>
+                                    <a class="btn btn-primary" href={`/employees/add/${e._id}`}> Update </a>
+                                </td>
 
-                            <form onSubmit={this.handleSubmit(e._id)}>
-                                <input type='submit'/>
-                            </form>
-                            
-                        </div>
-                    ))
-                }
+                            </tr>
+                        ))
+                    }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }

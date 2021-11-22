@@ -6,18 +6,28 @@ import "../App.css"
 export default function EmployeeDetails() {
 
     const [employee, setEmployee] = useState([])
+    const[isMounted, setIsMounted] = useState(false)
 
     let {id} = useParams()
 
     useEffect(() => {
-        axios.get(`http://localhost:9090/api/v1/employees/${id}`)
-        .then(response => {
-            //this.setState({employees: response.data.employees})
-            
-            setEmployee(response.data)
-            console.log(employee.firstName)
-        })
-        .catch(error => console.log(error))
+        async function fetchData() {
+            let mounted = true
+            await axios.get(`http://localhost:9090/api/v1/employees/${id}`)
+            .then(response => {
+                setEmployee(response.data)
+                console.log(employee.firstName)
+            })
+            .then(data => {
+                if(mounted){
+                  
+                }
+              })
+            .catch(error => console.log(error))
+    
+            return () => mounted = false
+        }
+        fetchData()
     }, []);
 
     

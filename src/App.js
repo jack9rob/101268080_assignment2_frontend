@@ -2,17 +2,21 @@ import './App.css';
 import EmployeeList from './components/EmployeeList';
 import EmployeeDetails from './components/EmployeeDetails';
 import EmployeeForm from './components/EmployeeForm';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import EmployeeDelete from './components/EmployeeDelete';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
+    <div class="App">
       <BrowserRouter>
-          <Switch>
-            <Route path="/api/v1/employees/add"><EmployeeForm/></Route>
-            <Route path="/api/v1/employees/:id"><EmployeeDetails/></Route>
-            <Route path="/api/v1/employees"><EmployeeList/></Route>
-          </Switch>
+          <Routes>
+            <Route path= "/" element={<EmployeeList/>} />
+            <Route path="/employees/add" element={<EmployeeForm/> } />
+            <Route path="/employees/add/:id" element={<EmployeeForm/> } />
+            <Route path="/employees/delete/:id" element={<EmployeeDelete/>}/>
+            <Route path="/employees/:id" element={<EmployeeDetails/>} />
+            
+          </Routes>
       </BrowserRouter>
     </div>
   );
