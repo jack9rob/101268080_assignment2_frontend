@@ -35,13 +35,10 @@ export default class EmployeesList extends Component {
 
     render() {
         return (
-            <div class="mt-5">
-                <div>
-                <Link to="/employees/add"><button class="btn btn-primary">Add Employee</button></Link>
-                </div>
-                <br/>
-                <div>
-                    <table class="table table-striped">
+            <div class="container">
+
+                <div className="row">
+                    <table className="table table-striped">
                         <thead>
                         <tr>
                             <th scope="col">Employee First Name</th>
@@ -58,11 +55,12 @@ export default class EmployeesList extends Component {
                                 <td>{e.lastName}</td>
                                 <td>{e.emailId}</td>
                                 <td>
-                                    <a class="btn btn-primary mr-2" href={`/employees/${e._id}`}>Details</a>
-                                    <a class="btn btn-danger mr-2" href={`/employees/delete/${e._id}`}> Delete </a>
-                                    <a class="btn btn-primary" href={`/employees/add/${e._id}`}> Update </a>
+                                    <a className="btn btn-primary mr-2" href={`/employees/${e._id}`}>Details</a>
+                                    &nbsp;
+                                    <a className="btn btn-danger mr-2" href={`/employees/delete/${e._id}`}> Delete </a>
+                                    &nbsp;
+                                    <a className="btn btn-primary" href={`/employees/add/${e._id}`}> Update </a>
                                 </td>
-
                             </tr>
                         ))
                     }

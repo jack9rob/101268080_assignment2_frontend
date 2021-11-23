@@ -4,10 +4,12 @@ import EmployeeDetails from './components/EmployeeDetails';
 import EmployeeForm from './components/EmployeeForm';
 import EmployeeDelete from './components/EmployeeDelete';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
-    <div class="App">
+    <div class="container">
+      <NavBar/>
       <BrowserRouter>
           <Routes>
             <Route path= "/" element={<EmployeeList/>} />

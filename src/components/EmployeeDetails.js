@@ -32,14 +32,15 @@ export default function EmployeeDetails() {
 
     
     return (
-        <div>
-            <h1>EmployeeDetails</h1>
-            {   
-            <div>
-                <h2>{employee.firstName} {employee.lastName}</h2>
-                <h3>{employee.emailId}</h3>
+        <div className="container">
+
+            <h1>{employee.firstName} {employee.lastName}</h1>
+            
+            <div className="row">
+                <h3 className="col-1">Email: </h3>
+                <h3 className="col-3">{employee.emailId}</h3>
             </div>
-            }
+            
         </div>
     )
 }

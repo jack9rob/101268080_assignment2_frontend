@@ -44,14 +44,15 @@ export default function EmployeeDetails() {
                 isDeleted ? 
                 <div>
                     <h2>Employee Deleted!</h2>
-                    <button onClick={navigate('/employees')}>OK</button>
+                    <button onClick={navigate('/')}>OK</button>
                 </div>
                 : 
                 <div>
-                    <h1>Delete {employee.firstName} {employee.lastName}</h1>
+                    <h1>Delete {employee.firstName} {employee.lastName}?</h1>
                     <form onSubmit={onDelete}>
-                        <button type="Submit"> DELETE</button>
-                        <Link to='/employees'><button>Cancel</button> </Link> 
+                        <button type="Submit" className="btn btn-danger"> DELETE</button>
+                        &nbsp;
+                        <Link to='/'><button className="btn btn-secondary">Cancel</button> </Link> 
                     </form>
             <p>{isDeleted ? "Deleted" : ""}</p>
                 </div>
